@@ -1,3 +1,6 @@
+// A simple program for generating the dwm status bar using
+// github.com/thomas11/dwmstatus. It outputs the current time and the battery
+// level (Linux only).
 package main
 
 import (
@@ -18,6 +21,8 @@ const (
 	batteryFull = batteryPath + "energy_full"
 )
 
+// Read an int from a file, assuming that is all the file contains, modulo
+// whitespace.
 func readIntFromFile(path string) (int, error) {
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -46,6 +51,7 @@ func getBatteryPercentage() int {
 	return int(100 * (float32(now) / float32(full)))
 }
 
+// This function implements dwmstatus.genTitleFunc.
 func genTitle(now time.Time, b *bytes.Buffer) {
 	b.WriteString(now.Format(timeLayout))
 

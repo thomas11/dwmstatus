@@ -1,3 +1,8 @@
+// Package dwmstatus is a Go implementation of
+// http://dwm.suckless.org/dwmstatus/, a utility to set the title of the X root
+// window, which dwm uses to get the content of the status bar.
+//
+// This package does not provide any content for the status bar.
 package dwmstatus
 
 import (
@@ -9,6 +14,9 @@ import (
 	"time"
 )
 
+// Pass a function with this signature to Run. It will be called repeatedly and
+// whatever you write to Buffer b will be the new value of the status bar. The
+// current time is provided as a convenience. b will be empty every time.
 type GenTitleFunc func(now time.Time, b *bytes.Buffer)
 
 func setWindowTitle(title []byte, X *xgb.Conn, window xproto.Window) {
@@ -22,6 +30,8 @@ func setStatus(status []byte, X *xgb.Conn) {
 	setWindowTitle(status, X, screen.Root)
 }
 
+// Start the process of updating the status bar. genTitle will be called
+// repeatedly in the given interval.
 func Run(interval time.Duration, genTitle GenTitleFunc) {
 	X, err := xgb.NewConn()
 	if err != nil {
