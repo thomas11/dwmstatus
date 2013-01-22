@@ -2,7 +2,11 @@
 // http://dwm.suckless.org/dwmstatus/, a utility to set the title of the X root
 // window, which dwm uses to get the content of the status bar.
 //
-// This package does not provide any content for the status bar.
+// This package does not provide any content for the status bar. You can pass
+// your own GenTitleFunc to generate any content you like. dwmstatus/main.go
+// contains an example.
+//
+// Thomas Kappler <tkappler@gmail.com>
 package dwmstatus
 
 import (

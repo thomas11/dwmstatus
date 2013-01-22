@@ -1,6 +1,8 @@
 // A simple program for generating the dwm status bar using
 // github.com/thomas11/dwmstatus. It outputs the current time and the battery
 // level (Linux only).
+//
+// Thomas Kappler <tkappler@gmail.com>
 package main
 
 import (
